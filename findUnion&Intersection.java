@@ -33,6 +33,9 @@ public static void main(String aa[])
    }
   }
  }
+ System.out.println("Intersection:");
+ for(i=0;i<count;i++)
+ System.out.println(arr3[i]);
  for(i=0;i<5;i++)
  {
   for(j=0;j<count;j++)
