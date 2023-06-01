@@ -1,0 +1,89 @@
+import java.io.*;
+import java.util.Scanner;
+public class fileHandling{
+    public static void createFile(String fileName){
+        try{
+            File f0 = new File(fileName);
+            if(f0.createNewFile()){
+                System.out.println("File"+f0.getName()+"is created");
+            }
+            else{
+                 System.out.println("File is already exist in the directory."); 
+            }
+        }
+        catch (IOException exception) {
+            System.out.println("An unexpected error is occurred.");  
+        }
+    }
+    public static void fileExist(String fileName){
+        File f0 = new File(fileName);
+        if(f0.exists()){
+            System.out.println("The name of the File is"+f0.getName());
+            System.out.println("The abosolute path of the File is:"+f0.getAbsolutePath());
+            System.out.println("Is file readable?:"+f0.canRead());
+            System.out.println("Is file writable?:"+f0.canWrite());
+            System.out.println("The size of the file in byte:"+f0.length());
+        }
+        else{
+            System.out.println("File does not exist");;
+        }
+    }
+    private static void writeToFile(String fileName, String content) {
+        try {
+            FileWriter writer = new FileWriter(fileName);
+            writer.write(content);
+            writer.close();
+            System.out.println("Content written to the file successfully!");
+        } catch (IOException e) {
+            System.out.println("An error occurred: " + e.getMessage());
+        }
+    }
+    private static void readFromFile(String fileName){
+        try{
+        File f0=new File(fileName);
+        Scanner dataReader=new Scanner(f0);
+        while(dataReader.hasNextLine()){
+           String fileData = dataReader.nextLine(); 
+           System.out.println(fileData);
+        }
+      }
+      catch(FileNotFoundException e)
+      {
+          System.out.println("File not found");
+      }
+    }
+    private static void deleteFile(String fileName) {   
+    File f0 = new File(fileName);   
+    if (f0.delete()) {   
+      System.out.println(f0.getName()+ " file is deleted successfully.");  
+    } else {  
+      System.out.println("Unexpected error found in deletion of the file.");  
+    }
+    }
+    public static void main(String arg []){
+        Scanner sc = new Scanner(System.in);
+        int ch=0;
+        while(ch<6)
+        {
+        System.out.println("Press 1 to create a new file:");
+        System.out.println("Press 2 to get information about the file");
+        System.out.println("Press 3 for writing in the file");
+        System.out.println("Press 4 for reading the file");
+        System.out.println("Press 5 for deleting a file");
+        System.out.print("Enter your choice:");
+        ch=sc.nextInt();
+        switch(ch)
+        {
+         case 1:createFile("Umang.txt");
+                break;
+         case 2:fileExist("Umang.txt");   
+                break;
+         case 3:writeToFile("Umang.txt","Hii this is umang");    
+                break;
+         case 4:readFromFile("Umang.txt");
+                break;
+         case 5:deleteFile("Umang.txt");        
+        } 
+    }
+    }
+}
